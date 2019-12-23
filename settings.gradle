@@ -1,2 +1,2 @@
-include ':app', ':pushnotification', ':receivingintent'
+include ':app', ':pushnotification', ':receivingintent', ':map', ':recyclerviewdatabinding'
 rootProject.name='Android Resources'
