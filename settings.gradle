@@ -1,2 +1,2 @@
-include ':app', ':pushnotification', ':receivingintent', ':map', ':recyclerviewdatabinding', ':retrofit', ':draggerroom'
+include ':app', ':pushnotification', ':receivingintent', ':map', ':recyclerviewdatabinding', ':retrofit', ':draggerroom', ':mvvmdiretroroomjavax'
 rootProject.name='Android Resources'

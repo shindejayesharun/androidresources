@@ -19,7 +19,8 @@ public class RoomModule {
     private AppDatabase appDatabase;
 
     public RoomModule(Application application){
-        appDatabase = Room.databaseBuilder(application,AppDatabase.class,"appdb.db").build();
+        appDatabase = Room.databaseBuilder(application,AppDatabase.class,"appdb.db")
+                .allowMainThreadQueries().build();
     }
 
     @Singleton
@@ -36,7 +37,7 @@ public class RoomModule {
 
     @Singleton
     @Provides
-    LocalRepository provideLocalRepository(){
+    LocalRepositoryImpl provideLocalRepository(){
         return new LocalRepositoryImpl(provideUserDao());
     }
 }

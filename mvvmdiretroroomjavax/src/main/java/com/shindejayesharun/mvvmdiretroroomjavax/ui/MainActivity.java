@@ -1,18 +1,13 @@
-package com.shindejayesharun.draggerroom.ui;
+package com.shindejayesharun.mvvmdiretroroomjavax.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.RoomDatabase;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.shindejayesharun.draggerroom.MyApplication;
-import com.shindejayesharun.draggerroom.R;
-import com.shindejayesharun.draggerroom.local.UserEntity;
-import com.shindejayesharun.draggerroom.remote.ApiInterface;
-import com.shindejayesharun.draggerroom.repository.LocalRepositoryImpl;
-
-import java.util.List;
+import com.shindejayesharun.mvvmdiretroroomjavax.R;
+import com.shindejayesharun.mvvmdiretroroomjavax.data.remote.ApiInterface;
+import com.shindejayesharun.mvvmdiretroroomjavax.repository.Repository;
 
 import javax.inject.Inject;
 
@@ -25,20 +20,23 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    Retrofit retrofit;
+    Repository repository;
 
     @Inject
-    LocalRepositoryImpl localRepository;
+    Retrofit retrofit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((MyApplication)getApplication()).getmApiComponent().inject(this);
+
+
+        //repository.getApiCall();
 
         ApiInterface api=retrofit.create(ApiInterface.class);
-        Call<ResponseBody> call=api.getAllUsers2();
+        Call<ResponseBody> call=api.getAllUsers();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -50,13 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Tag","fail");
             }
         });
-
-        localRepository.insertUser(new UserEntity(2,"shinde","mumbai","868768"));
-
-        List<UserEntity> users=localRepository.getAllUsers();
-        Log.d("Tag",users.toString());
-
-
 
     }
 }
