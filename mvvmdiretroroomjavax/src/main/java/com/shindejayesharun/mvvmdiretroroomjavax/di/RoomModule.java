@@ -14,11 +14,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit2.Retrofit;
 
 @Module
 public class RoomModule {
-    @Inject Retrofit retrofit;
+
     private AppDatabase appDatabase;
 
     public RoomModule(Application application) {
@@ -33,9 +32,5 @@ public class RoomModule {
        return appDatabase.userDao();
     }
 
-    @Provides
-    @Singleton
-    Repository provideRepository(){
-        return new Repository(provideUserDao(),retrofit);
-    }
+
 }

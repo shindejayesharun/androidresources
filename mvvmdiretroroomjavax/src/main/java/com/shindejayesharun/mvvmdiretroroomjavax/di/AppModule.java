@@ -24,15 +24,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule extends Application {
 
     private Application application;
-    private AppDatabase appDatabase;
 
     public AppModule(Application application) {
         this.application = application;
-        appDatabase = Room.databaseBuilder(application, AppDatabase.class,"myDb.db")
-                .allowMainThreadQueries()
-                .build();
-    }
 
+    }
 
     @Provides
     @Singleton
@@ -41,38 +37,4 @@ public class AppModule extends Application {
     }
 
 
-    @Provides
-    @Singleton
-    UserDao provideUserDao(){
-        return appDatabase.userDao();
-    }
-
-    @Provides
-    @Singleton
-    Repository provideRepository(){
-        return new Repository(provideUserDao(),provideRetrofit());
-    }
-
-
-    @Provides
-    @Singleton
-    Gson provideGson(){
-        GsonBuilder gsonBuilder=new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        return gsonBuilder.create();
-    }
-
-    @Provides
-    @Singleton
-    Retrofit provideRetrofit(){
-        HttpLoggingInterceptor httpLoggingInterceptor=new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client=new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
-
-        return new Retrofit.Builder()
-                .baseUrl("http://dummy.restapiexample.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-    }
 }

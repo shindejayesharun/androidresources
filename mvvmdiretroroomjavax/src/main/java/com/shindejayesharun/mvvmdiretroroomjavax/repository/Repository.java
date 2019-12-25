@@ -1,34 +1,21 @@
 package com.shindejayesharun.mvvmdiretroroomjavax.repository;
 
-import android.util.Log;
-
+import com.shindejayesharun.mvvmdiretroroomjavax.data.Employee;
 import com.shindejayesharun.mvvmdiretroroomjavax.data.local.User;
 import com.shindejayesharun.mvvmdiretroroomjavax.data.local.UserDao;
 import com.shindejayesharun.mvvmdiretroroomjavax.data.remote.ApiInterface;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class Repository implements UserDao, ApiInterface {
-
-    @Inject
-    UserDao userDao;
-    @Inject
-    Retrofit retrofit;
-
     private ApiInterface apiInterface;
 
-    public Repository(UserDao userDao, Retrofit retrofit) {
-        this.userDao = userDao;
-        this.retrofit=retrofit;
-        apiInterface=retrofit.create(ApiInterface.class);
+    public Repository(ApiInterface apiInterface) {
+        this.apiInterface = apiInterface;
     }
 
     @Override
@@ -47,8 +34,13 @@ public class Repository implements UserDao, ApiInterface {
     }
 
     @Override
-    public Call<ResponseBody> getAllUsers() {
+    public Call<List<Employee>> getAllUsers() {
         return null;
+    }
+
+    @Override
+    public Observable<List<Employee>> getAllUser1() {
+        return apiInterface.getAllUser1();
     }
 
     @Override
@@ -56,18 +48,4 @@ public class Repository implements UserDao, ApiInterface {
         return null;
     }
 
-    public void getApiCall(){
-        Call<ResponseBody> call=apiInterface.getAllUsers();
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("Tag",response.body().source().toString());
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("Tag","fail");
-            }
-        });
-    }
 }
