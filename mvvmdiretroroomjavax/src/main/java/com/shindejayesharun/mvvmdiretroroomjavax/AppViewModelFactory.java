@@ -4,17 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.shindejayesharun.mvvmdiretroroomjavax.repository.Repository;
+import com.shindejayesharun.mvvmdiretroroomjavax.ui.MainViewModel;
+
+import javax.inject.Inject;
+
 import dagger.Module;
 
-@Module
+
 public class AppViewModelFactory implements ViewModelProvider.Factory {
-    @NonNull
+    /*@NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         return null;
     }
-
-   /* @Inject
+*/
+    @Inject
     Repository repository;
 
 
@@ -29,5 +34,5 @@ public class AppViewModelFactory implements ViewModelProvider.Factory {
             return (T) new MainViewModel(repository);
         }
         throw new IllegalArgumentException("Wrong ViewModel class");
-    }*/
+    }
 }

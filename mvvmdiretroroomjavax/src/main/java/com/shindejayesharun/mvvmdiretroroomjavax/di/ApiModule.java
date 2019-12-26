@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shindejayesharun.mvvmdiretroroomjavax.data.remote.ApiInterface;
+import com.shindejayesharun.mvvmdiretroroomjavax.repository.Repository;
 
 import javax.inject.Singleton;
 
@@ -50,10 +51,10 @@ public class ApiModule {
     }
 
 
-   /* @Singleton
+    /*@Singleton
     @Provides
     public Repository provideRepository(Retrofit retrofit){
-        return new Repository(getApiInterface(retrofit));
+        return new Repository(getApiInterface(retrofit), userDao);
     }*/
 
 

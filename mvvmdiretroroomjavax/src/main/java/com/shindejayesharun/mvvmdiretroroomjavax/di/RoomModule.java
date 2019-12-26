@@ -5,11 +5,9 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import com.shindejayesharun.mvvmdiretroroomjavax.data.local.AppDatabase;
-import com.shindejayesharun.mvvmdiretroroomjavax.data.local.UserDao;
-import com.shindejayesharun.mvvmdiretroroomjavax.repository.Repository;
+import com.shindejayesharun.mvvmdiretroroomjavax.data.local.db.AppDatabase;
+import com.shindejayesharun.mvvmdiretroroomjavax.data.local.db.UserDao;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;

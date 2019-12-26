@@ -1,4 +1,4 @@
-package com.shindejayesharun.mvvmdiretroroomjavax.data.local;
+package com.shindejayesharun.mvvmdiretroroomjavax.data.local.db;
 
 import android.app.Application;
 

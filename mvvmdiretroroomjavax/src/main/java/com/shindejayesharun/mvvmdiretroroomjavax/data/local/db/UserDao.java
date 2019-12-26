@@ -1,4 +1,4 @@
-package com.shindejayesharun.mvvmdiretroroomjavax.data.local;
+package com.shindejayesharun.mvvmdiretroroomjavax.data.local.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

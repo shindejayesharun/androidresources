@@ -1,7 +1,7 @@
 package com.shindejayesharun.mvvmdiretroroomjavax.data.remote;
 
 import com.shindejayesharun.mvvmdiretroroomjavax.data.Employee;
-import com.shindejayesharun.mvvmdiretroroomjavax.data.local.User;
+import com.shindejayesharun.mvvmdiretroroomjavax.data.local.db.User;
 
 import java.util.List;
 
